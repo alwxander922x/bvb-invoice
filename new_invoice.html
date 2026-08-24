@@ -13,9 +13,6 @@
   .fld:focus{background:#fffdf4;}
   .print-fld{display:none;}
   a{color:#102242;} a:hover{color:#cf9032;}
-  .charges-table.charges-empty td,
-  .charges-table.charges-empty th{border-color:transparent !important;}
-  .charges-table.charges-empty thead th{background:#f6f8fa !important;color:#9aa3ae !important;}
   @media print{
     body{background:#fff;}
     .toolbar{display:none !important;}
@@ -51,30 +48,18 @@
 
   <!-- meta grid -->
   <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:7px;margin-top:10px;">
-    <div style="grid-column:span 4;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#f6f8fa;">
+    <div style="grid-column:span 6;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#f6f8fa;">
       <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Invoice Number</span>
       <div class="fld" contenteditable="" data-ph="—" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
-    <div style="grid-column:span 4;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
+    <div style="grid-column:span 6;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
       <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Invoice Date</span>
       <div class="fld" contenteditable="" data-ph="MM / DD / YYYY" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
-    <div style="grid-column:span 4;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Due Date</span>
-      <div class="fld" contenteditable="" data-ph="MM / DD / YYYY" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
-    </div>
 
-    <div style="grid-column:span 6;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
+    <div style="grid-column:span 12;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
       <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Load / Reference Number</span>
       <div class="fld" contenteditable="" data-ph="—" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
-    </div>
-    <div style="grid-column:span 3;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">PO Number</span>
-      <div class="fld" contenteditable="" data-ph="—" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
-    </div>
-    <div style="grid-column:span 3;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Terms</span>
-      <div class="fld" contenteditable="" data-ph="Net 30" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
   </div>
 
@@ -113,53 +98,27 @@ City, State ZIP" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb
     <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
       <thead>
         <tr>
-          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:16%;">Event</th>
-          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:52%;">Location</th>
-          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:32%;">Weight</th>
+          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:20%;">Event</th>
+          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:80%;">Location</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="padding:5px 8px;font-size:11px;font-weight:600;color:#102242;border-bottom:1px solid #e4e8ed;">Pick up-A</td>
           <td style="padding:0;border-bottom:1px solid #e4e8ed;"><div class="fld" contenteditable="" data-ph="City, State" style="padding:5px 8px;min-height:18px;background:#f6f8fa;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>
-          <td style="padding:0;border-bottom:1px solid #e4e8ed;"><div class="fld" contenteditable="" data-ph="—" style="padding:5px 8px;min-height:18px;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>
         </tr>
         <tr>
           <td style="padding:5px 8px;font-size:11px;font-weight:600;color:#102242;">Drop-A</td>
           <td style="padding:0;"><div class="fld" contenteditable="" data-ph="City, State" style="padding:5px 8px;min-height:18px;background:#f6f8fa;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>
-          <td style="padding:0;"><div class="fld" contenteditable="" data-ph="—" style="padding:5px 8px;min-height:18px;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- line items -->
-  <div style="margin-top:9px;">
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px;">
-      <span style="width:5px;height:14px;background:#cf9032;border-radius:2px;"></span>
-      <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#102242;margin:0;">Charges</h2>
-    </div>
-    <table id="chargesTable" class="charges-table" style="width:100%;border-collapse:collapse;table-layout:fixed;">
-      <thead>
-        <tr>
-          <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;border:1px solid #c4cbd4;width:34%;">Charge Type</th>
-          <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;border:1px solid #c4cbd4;width:12%;">Leg</th>
-          <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:center;border:1px solid #c4cbd4;width:12%;">Qty</th>
-          <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:right;border:1px solid #c4cbd4;width:21%;">Rate</th>
-          <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:right;border:1px solid #c4cbd4;width:21%;">Amount</th>
-        </tr>
-      </thead>
-      <tbody id="lineItemsBody"></tbody>
-    </table>
-    <button onclick="addLine()" style="margin-top:5px;font-size:11px;font-weight:600;color:#102242;background:#f6f8fa;border:1px dashed #aeb6c1;border-radius:5px;padding:4px 10px;cursor:pointer;">+ Add line</button>
-  </div>
-
   <!-- totals -->
   <div style="margin-top:9px;display:flex;justify-content:flex-end;">
     <table style="width:280px;border-collapse:collapse;border:1px solid #c4cbd4;">
-      <tr><td style="padding:6px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:1px solid #e4e8ed;">Subtotal</td><td style="padding:6px 11px;text-align:right;border-top:1px solid #e4e8ed;"><div id="subtotalFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
-      <tr><td style="padding:6px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Tax</td><td style="padding:6px 11px;text-align:right;"><div id="taxFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
-      <tr><td style="padding:6px 11px;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:2px solid #102242;">Total Due</td><td style="padding:6px 11px;text-align:right;border-top:2px solid #102242;"><div id="totalDueFld" class="fld" data-ph="$0.00" style="font-size:14px;font-weight:800;color:#102242;outline:none;"></div></td></tr>
+      <tr><td style="padding:7px 11px;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Total Due</td><td style="padding:7px 11px;text-align:right;"><div id="totalDueFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:14px;font-weight:800;color:#102242;outline:none;"></div></td></tr>
     </table>
   </div>
 
@@ -169,12 +128,12 @@ City, State ZIP" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
       <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Payment Instructions</h2>
     </div>
-    <div style="padding:7px 11px;">
-      <div class="fld" contenteditable="" data-ph="Bank name, account #, routing #, remit-to address, etc." style="min-height:40px;background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:#102242;white-space:pre-wrap;outline:none;">Please send payment to: Bank of America
+    <div style="padding:7px 11px;text-align:center;">
+      <div class="fld" contenteditable="" data-ph="Bank name, account #, routing #, remit-to address, etc." style="min-height:40px;background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:#102242;white-space:pre-wrap;text-align:center;outline:none;">Please send payment to: Bank of America
 Company Name: BVB Express LLC
 Account Number: 138128546677
 Routing Number: 125000024</div>
-      <div style="margin-top:6px;font-size:10px;font-weight:700;color:#102242;">REMITTANCE: <a href="mailto:accounting@bvbfreight.com" style="color:#102242;font-weight:500;">accounting@bvbfreight.com</a></div>
+      <div style="margin-top:6px;font-size:10px;font-weight:700;color:#102242;text-align:center;">REMITTANCE: <a href="mailto:accounting@bvbfreight.com" style="color:#102242;font-weight:500;">accounting@bvbfreight.com</a></div>
     </div>
   </div>
 
@@ -196,36 +155,12 @@ Routing Number: 125000024</div>
 </div>
 
 <script>
-function makeLineRow(){
-  var tr = document.createElement('tr');
-  tr.innerHTML =
-    '<td style="border:1px solid #c4cbd4;padding:0;vertical-align:top;"><div class="fld" contenteditable="" data-ph="e.g. Linehaul per mile - TRUCK" style="padding:5px 6px;min-height:22px;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>' +
-    '<td style="border:1px solid #c4cbd4;padding:0;vertical-align:top;"><div class="fld" contenteditable="" style="padding:5px 6px;min-height:22px;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>' +
-    '<td style="border:1px solid #c4cbd4;padding:0;vertical-align:top;"><div class="fld" contenteditable="" style="padding:5px 6px;min-height:22px;text-align:center;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>' +
-    '<td style="border:1px solid #c4cbd4;padding:0;vertical-align:top;"><div class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="padding:5px 6px;min-height:22px;text-align:right;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>' +
-    '<td style="border:1px solid #c4cbd4;padding:0;vertical-align:top;"><div class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="padding:5px 6px;min-height:22px;text-align:right;font-size:11px;font-weight:500;color:#102242;outline:none;"></div></td>';
-  setupPrintFieldsIn(tr);
-  return tr;
-}
-function addLine(){
-  document.getElementById('lineItemsBody').appendChild(makeLineRow());
-  updateChargesEmptyState();
-}
-function updateChargesEmptyState(){
-  var table = document.getElementById('chargesTable');
-  if (!table) return;
-  var hasContent = Array.from(table.querySelectorAll('#lineItemsBody .fld[contenteditable]'))
-    .some(function(el){ return el.textContent.trim() !== ''; });
-  table.classList.toggle('charges-empty', !hasContent);
-}
 function clearAll(){
   if(!confirm('Clear all entered fields?')) return;
   document.querySelectorAll('.fld[contenteditable]').forEach(function(el){
     el.textContent = '';
     syncPrintField(el);
   });
-  recalcTotal();
-  updateChargesEmptyState();
 }
 
 /* ---------- money auto-formatting ("$" always shown while typing) ---------- */
@@ -253,35 +188,17 @@ function attachMoneyField(el){
     el.textContent = formatMoneyValue(el.textContent);
     placeCaretAtEnd(el);
     syncPrintField(el);
-    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
   el.addEventListener('paste', function(evt){
     evt.preventDefault();
     var text = (evt.clipboardData || window.clipboardData).getData('text');
     el.textContent = formatMoneyValue(text);
     syncPrintField(el);
-    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
   el.addEventListener('blur', function(){
     if (!el.textContent.trim()) el.textContent = '';
     syncPrintField(el);
-    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
-}
-
-/* ---------- Total Due = Subtotal + Tax ---------- */
-function parseMoney(text){
-  var n = parseFloat((text || '').replace(/[^0-9.]/g, ''));
-  return isNaN(n) ? 0 : n;
-}
-function recalcTotal(){
-  var subtotalFld = document.getElementById('subtotalFld');
-  var taxFld = document.getElementById('taxFld');
-  var totalDueFld = document.getElementById('totalDueFld');
-  if (!subtotalFld || !taxFld || !totalDueFld) return;
-  var total = parseMoney(subtotalFld.textContent) + parseMoney(taxFld.textContent);
-  totalDueFld.textContent = total ? formatMoneyValue(String(Math.round(total * 100))) : '';
-  syncPrintField(totalDueFld);
 }
 
 /* ---------- clean, non-editable print output ----------
@@ -302,14 +219,12 @@ function setupPrintFieldsIn(scope){
     printEl.style.cssText = el.getAttribute('style') || '';
     el.insertAdjacentElement('afterend', printEl);
     syncPrintField(el);
-    el.addEventListener('input', function(){ syncPrintField(el); updateChargesEmptyState(); });
+    el.addEventListener('input', function(){ syncPrintField(el); });
     if (el.classList.contains('money')) attachMoneyField(el);
   });
 }
 function prepareForPrint(){
   document.querySelectorAll('[data-print-field="editor"]').forEach(syncPrintField);
-  recalcTotal();
-  updateChargesEmptyState();
 }
 
 /* ---------- always fit exactly one printed page ----------
@@ -346,9 +261,7 @@ window.addEventListener('beforeprint', function(){
 });
 window.addEventListener('afterprint', resetSheetScale);
 
-addLine();
 setupPrintFieldsIn(document);
-updateChargesEmptyState();
 </script>
 </body>
 </html>
