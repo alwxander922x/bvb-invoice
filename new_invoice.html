@@ -13,10 +13,14 @@
   .fld:focus{background:#fffdf4;}
   .print-fld{display:none;}
   a{color:#102242;} a:hover{color:#cf9032;}
+  .charges-table.charges-empty td,
+  .charges-table.charges-empty th{border-color:transparent !important;}
+  .charges-table.charges-empty thead th{background:#f6f8fa !important;color:#9aa3ae !important;}
   @media print{
     body{background:#fff;}
     .toolbar{display:none !important;}
-    .sheet{margin:0 !important;box-shadow:none !important;width:8.5in;height:11in;min-height:11in;}
+    .print-frame{width:8.5in;height:11in;overflow:hidden;position:relative;margin:0 !important;}
+    .sheet{margin:0 !important;box-shadow:none !important;width:8.5in;}
     .fld[data-print-field="editor"]{display:none !important;}
     .print-fld{
       display:block !important;
@@ -36,7 +40,8 @@
   <button onclick="printPdf()" style="font-size:12px;font-weight:600;border:1px solid #cf9032;background:#cf9032;color:#241a06;padding:7px 14px;border-radius:6px;cursor:pointer;">Print / Save PDF</button>
 </div>
 
-<div class="sheet" data-screen-label="Invoice" style="box-sizing:border-box;width:8.5in;height:11in;min-height:11in;max-height:11in;background:#fff;margin:88px auto 28px;padding:0.3in 0.5in 0.3in;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden;">
+<div class="print-frame" style="width:8.5in;margin:88px auto 28px;">
+<div class="sheet" data-screen-label="Invoice" style="box-sizing:border-box;width:8.5in;min-height:11in;background:#fff;padding:0.3in 0.5in 0.3in;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.4);display:flex;flex-direction:column;transform-origin:top left;">
 
   <div style="display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
     <img src="assets/bvb-logo.png" alt="BVB — Best Value Brokerage" style="height:76px;display:block;width:auto;background:transparent;">
@@ -134,7 +139,7 @@ City, State ZIP" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb
       <span style="width:5px;height:14px;background:#cf9032;border-radius:2px;"></span>
       <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#102242;margin:0;">Charges</h2>
     </div>
-    <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+    <table id="chargesTable" class="charges-table" style="width:100%;border-collapse:collapse;table-layout:fixed;">
       <thead>
         <tr>
           <th style="background:#102242;color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;text-align:left;border:1px solid #c4cbd4;width:34%;">Charge Type</th>
@@ -188,6 +193,7 @@ Routing Number: 125000024</div>
     </div>
   </div>
 </div>
+</div>
 
 <script>
 function makeLineRow(){
@@ -203,6 +209,14 @@ function makeLineRow(){
 }
 function addLine(){
   document.getElementById('lineItemsBody').appendChild(makeLineRow());
+  updateChargesEmptyState();
+}
+function updateChargesEmptyState(){
+  var table = document.getElementById('chargesTable');
+  if (!table) return;
+  var hasContent = Array.from(table.querySelectorAll('#lineItemsBody .fld[contenteditable]'))
+    .some(function(el){ return el.textContent.trim() !== ''; });
+  table.classList.toggle('charges-empty', !hasContent);
 }
 function clearAll(){
   if(!confirm('Clear all entered fields?')) return;
@@ -211,6 +225,7 @@ function clearAll(){
     syncPrintField(el);
   });
   recalcTotal();
+  updateChargesEmptyState();
 }
 
 /* ---------- money auto-formatting ("$" always shown while typing) ---------- */
@@ -287,22 +302,53 @@ function setupPrintFieldsIn(scope){
     printEl.style.cssText = el.getAttribute('style') || '';
     el.insertAdjacentElement('afterend', printEl);
     syncPrintField(el);
-    el.addEventListener('input', function(){ syncPrintField(el); });
+    el.addEventListener('input', function(){ syncPrintField(el); updateChargesEmptyState(); });
     if (el.classList.contains('money')) attachMoneyField(el);
   });
 }
 function prepareForPrint(){
   document.querySelectorAll('[data-print-field="editor"]').forEach(syncPrintField);
   recalcTotal();
+  updateChargesEmptyState();
+}
+
+/* ---------- always fit exactly one printed page ----------
+   Measures the actual rendered content height (after the print-field swap)
+   and, if it's taller than one 8.5x11 page, scales the whole sheet down
+   uniformly so nothing overlaps or spills onto a 2nd page. */
+function fitSheetToPage(){
+  var sheet = document.querySelector('.sheet');
+  if (!sheet) return;
+  sheet.style.transform = 'none';
+  sheet.style.width = '8.5in';
+  var naturalHeightPx = sheet.scrollHeight;
+  var availablePx = 11 * 96;
+  if (naturalHeightPx > availablePx) {
+    var scale = availablePx / naturalHeightPx;
+    sheet.style.transform = 'scale(' + scale + ')';
+    sheet.style.width = (8.5 / scale) + 'in';
+  }
+}
+function resetSheetScale(){
+  var sheet = document.querySelector('.sheet');
+  if (!sheet) return;
+  sheet.style.transform = 'none';
+  sheet.style.width = '8.5in';
 }
 function printPdf(){
   prepareForPrint();
+  fitSheetToPage();
   window.print();
 }
-window.addEventListener('beforeprint', prepareForPrint);
+window.addEventListener('beforeprint', function(){
+  prepareForPrint();
+  fitSheetToPage();
+});
+window.addEventListener('afterprint', resetSheetScale);
 
-for (var i = 0; i < 4; i++) { addLine(); }
+addLine();
 setupPrintFieldsIn(document);
+updateChargesEmptyState();
 </script>
 </body>
 </html>
