@@ -11,7 +11,9 @@
   body{margin:0;background:#5a606b;font-family:'Roboto',Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   .fld[contenteditable]:empty:before{content:attr(data-ph);color:#b3bac3;font-weight:400;}
   .fld:focus{background:#fffdf4;}
-  .addr-box::first-line{font-size:13px;font-weight:700;}
+  .addr-name{font-size:13px;font-weight:700;color:#102242 !important;text-transform:uppercase;}
+  .addr-lines{color:#102242 !important;text-transform:uppercase;}
+  .addr-sep{font-size:11px;font-weight:700;letter-spacing:.3em;color:#9aa3ae;padding:2px 8px;user-select:none;}
   .print-fld{display:none;}
   a{color:#102242;} a:hover{color:#cf9032;}
   @media print{
@@ -65,7 +67,7 @@
   </div>
 
   <!-- from / bill to -->
-  <div style="margin-top:9px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
+  <div style="margin-top:24px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
       <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Billing Parties</h2>
@@ -73,25 +75,30 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;">
       <div style="padding:7px 11px;border-right:1px solid #e4e8ed;">
         <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:3px;">From</span>
-        <div class="fld addr-box" contenteditable="" data-ph="Company name
-Street
+        <div style="background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;">
+          <div class="fld addr-name" contenteditable="" data-ph="Company name" style="min-height:16px;outline:none;">BVB Express LLC</div>
+          <div class="addr-sep">---</div>
+          <div class="fld addr-lines" contenteditable="" data-ph="Street
 City, State ZIP
-MC #" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:#102242;white-space:pre-wrap;outline:none;">BVB Express LLC
-160 NW Gilman Blvd, Ste 243
+MC #" style="min-height:36px;font-size:11px;font-weight:500;white-space:pre-wrap;outline:none;">160 NW Gilman Blvd, Ste 243
 Issaquah, WA 98027
 MC 1164350</div>
+        </div>
       </div>
       <div style="padding:7px 11px;">
         <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:3px;">Bill To</span>
-        <div class="fld addr-box" contenteditable="" data-ph="Company name
-Street
-City, State ZIP" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:#102242;white-space:pre-wrap;outline:none;"></div>
+        <div style="background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;">
+          <div class="fld addr-name" contenteditable="" data-ph="Company name" style="min-height:16px;outline:none;"></div>
+          <div class="addr-sep">---</div>
+          <div class="fld addr-lines" contenteditable="" data-ph="Street
+City, State ZIP" style="min-height:36px;font-size:11px;font-weight:500;white-space:pre-wrap;outline:none;"></div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- shipment details -->
-  <div style="margin-top:9px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
+  <div style="margin-top:24px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
       <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Shipment Details</h2>
@@ -117,14 +124,14 @@ City, State ZIP" style="min-height:56px;background:#f6f8fa;border:1px solid #aeb
   </div>
 
   <!-- totals -->
-  <div style="margin-top:9px;display:flex;justify-content:flex-end;">
+  <div style="margin-top:20px;display:flex;justify-content:flex-end;">
     <table style="width:280px;border-collapse:collapse;border:1px solid #c4cbd4;">
       <tr><td style="padding:7px 11px;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Total Due</td><td style="padding:7px 11px;text-align:right;"><div id="totalDueFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:14px;font-weight:800;color:#102242;outline:none;"></div></td></tr>
     </table>
   </div>
 
   <!-- payment instructions -->
-  <div style="margin-top:9px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
+  <div style="margin-top:20px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
       <h2 style="font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Payment Instructions</h2>
@@ -140,8 +147,7 @@ Routing Number: 125000024</div>
 
   <div style="margin-top:auto;padding-top:12px;">
     <div style="font-size:9px;color:#6b7480;font-weight:600;line-height:1.4;">To report billing discrepancies or request documentation, please email <a href="mailto:accounting@bvbfreight.com" style="color:#102242;">accounting@bvbfreight.com</a> within 72 hours of receipt.</div>
-    <div style="display:flex;align-items:flex-end;gap:20px;padding-top:8px;">
-      <div style="flex:1;font-size:9px;color:#6b7480;font-weight:600;">Thank you for your business.</div>
+    <div style="display:flex;align-items:flex-end;justify-content:flex-end;gap:20px;padding-top:8px;">
       <div style="display:flex;align-items:flex-end;gap:8px;">
         <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;white-space:nowrap;">Signature</span>
         <div class="fld" contenteditable="" style="flex:0 0 130px;border-bottom:1.5px solid #102242;min-height:18px;outline:none;"></div>
@@ -202,6 +208,33 @@ function attachMoneyField(el){
   });
 }
 
+/* ---------- force plain-text paste (strip incoming colors/formatting) ---------- */
+function insertPlainTextAtCursor(text){
+  var sel = window.getSelection();
+  if (!sel || !sel.rangeCount) return;
+  var range = sel.getRangeAt(0);
+  range.deleteContents();
+  var node = document.createTextNode(text);
+  range.insertNode(node);
+  range.setStartAfter(node);
+  range.setEndAfter(node);
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+function attachPlainTextPaste(el){
+  el.addEventListener('paste', function(evt){
+    evt.preventDefault();
+    var text = (evt.clipboardData || window.clipboardData).getData('text/plain');
+    insertPlainTextAtCursor(text);
+    syncPrintField(el);
+  });
+}
+function attachSingleLine(el){
+  el.addEventListener('keydown', function(evt){
+    if (evt.key === 'Enter') evt.preventDefault();
+  });
+}
+
 /* ---------- clean, non-editable print output ----------
    Each contenteditable field gets a hidden plain-text twin (.print-fld).
    On print, the editable version is hidden and the plain-text twin is shown,
@@ -222,6 +255,8 @@ function setupPrintFieldsIn(scope){
     syncPrintField(el);
     el.addEventListener('input', function(){ syncPrintField(el); });
     if (el.classList.contains('money')) attachMoneyField(el);
+    if (el.classList.contains('addr-name') || el.classList.contains('addr-lines')) attachPlainTextPaste(el);
+    if (el.classList.contains('addr-name')) attachSingleLine(el);
   });
 }
 function prepareForPrint(){
