@@ -1,2 +1,2 @@
-# bvb-invoice-
+# bvb-invoice
 bvb freight new invoice sample 
