@@ -259,26 +259,27 @@ function prepareForPrint(){
 
 /* ---------- always fit exactly one printed page ----------
    Measures the actual rendered content height (after the print-field swap)
-   and, if it's taller than one 8.5x11 page, scales the whole sheet down
-   uniformly so nothing overlaps or spills onto a 2nd page. */
+   and, if it's taller than one 8.5x11 page, shrinks the whole sheet down
+   uniformly so nothing overlaps or spills onto a 2nd page.
+   Uses CSS `zoom` (not `transform: scale`) — zoom makes the browser
+   re-layout and re-render text at the true target size with correct
+   hinting, whereas transform:scale visually stretches already-rendered
+   glyph outlines, which is what caused bold/narrow letters (L, I, etc.)
+   to look blurry/"floating" in the printed PDF. */
 function fitSheetToPage(){
   var sheet = document.querySelector('.sheet');
   if (!sheet) return;
-  sheet.style.transform = 'none';
-  sheet.style.width = '8.5in';
+  sheet.style.zoom = '1';
   var naturalHeightPx = sheet.scrollHeight;
   var availablePx = 11 * 96;
   if (naturalHeightPx > availablePx) {
-    var scale = availablePx / naturalHeightPx;
-    sheet.style.transform = 'scale(' + scale + ')';
-    sheet.style.width = (8.5 / scale) + 'in';
+    sheet.style.zoom = String(availablePx / naturalHeightPx);
   }
 }
 function resetSheetScale(){
   var sheet = document.querySelector('.sheet');
   if (!sheet) return;
-  sheet.style.transform = 'none';
-  sheet.style.width = '8.5in';
+  sheet.style.zoom = '1';
 }
 function printPdf(){
   prepareForPrint();
