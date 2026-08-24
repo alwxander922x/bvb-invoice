@@ -152,9 +152,9 @@ City, State ZIP" style="min-height:62px;background:#f6f8fa;border:1px solid #aeb
   <!-- totals -->
   <div style="margin-top:12px;display:flex;justify-content:flex-end;">
     <table style="width:280px;border-collapse:collapse;border:1px solid #c4cbd4;">
-      <tr><td style="padding:7px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:1px solid #e4e8ed;">Subtotal</td><td style="padding:7px 11px;text-align:right;border-top:1px solid #e4e8ed;"><div class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
-      <tr><td style="padding:7px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Tax</td><td style="padding:7px 11px;text-align:right;"><div class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
-      <tr><td style="padding:7px 11px;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:2px solid #102242;">Total Due</td><td style="padding:7px 11px;text-align:right;border-top:2px solid #102242;"><div class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:14px;font-weight:800;color:#102242;outline:none;"></div></td></tr>
+      <tr><td style="padding:7px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:1px solid #e4e8ed;">Subtotal</td><td style="padding:7px 11px;text-align:right;border-top:1px solid #e4e8ed;"><div id="subtotalFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
+      <tr><td style="padding:7px 11px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Tax</td><td style="padding:7px 11px;text-align:right;"><div id="taxFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:13px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
+      <tr><td style="padding:7px 11px;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;border-top:2px solid #102242;">Total Due</td><td style="padding:7px 11px;text-align:right;border-top:2px solid #102242;"><div id="totalDueFld" class="fld" data-ph="$0.00" style="font-size:14px;font-weight:800;color:#102242;outline:none;"></div></td></tr>
     </table>
   </div>
 
@@ -237,16 +237,19 @@ function attachMoneyField(el){
     el.textContent = formatMoneyValue(el.textContent);
     placeCaretAtEnd(el);
     syncPrintField(el);
+    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
   el.addEventListener('paste', function(evt){
     evt.preventDefault();
     var text = (evt.clipboardData || window.clipboardData).getData('text');
     el.textContent = formatMoneyValue(text);
     syncPrintField(el);
+    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
   el.addEventListener('blur', function(){
     if (!el.textContent.trim()) el.textContent = '';
     syncPrintField(el);
+    if (el.id === 'subtotalFld' || el.id === 'taxFld') recalcTotal();
   });
 }
 
@@ -274,6 +277,22 @@ function setupPrintFieldsIn(scope){
 }
 function prepareForPrint(){
   document.querySelectorAll('[data-print-field="editor"]').forEach(syncPrintField);
+  recalcTotal();
+}
+
+/* ---------- Total Due = Subtotal + Tax ---------- */
+function parseMoney(text){
+  var n = parseFloat((text || '').replace(/[^0-9.]/g, ''));
+  return isNaN(n) ? 0 : n;
+}
+function recalcTotal(){
+  var subtotalFld = document.getElementById('subtotalFld');
+  var taxFld = document.getElementById('taxFld');
+  var totalDueFld = document.getElementById('totalDueFld');
+  if (!subtotalFld || !taxFld || !totalDueFld) return;
+  var total = parseMoney(subtotalFld.textContent) + parseMoney(taxFld.textContent);
+  totalDueFld.textContent = total ? formatMoneyValue(String(Math.round(total * 100))) : '';
+  syncPrintField(totalDueFld);
 }
 function printPdf(){
   prepareForPrint();
