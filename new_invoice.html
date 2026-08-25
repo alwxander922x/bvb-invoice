@@ -137,7 +137,7 @@
 </div>
 
 <div class="print-frame">
-<div class="sheet" data-screen-label="Invoice">
+<div class="sheet">
 
   <div class="hdr">
     <img src="assets/bvb-logo.png" alt="BVB — Best Value Brokerage">
@@ -251,7 +251,7 @@ function clearAll(){
 
 /* ---------- money auto-formatting ("$" always shown while typing) ---------- */
 function formatMoneyValue(raw){
-  var digits = (raw || '').replace(/[^0-9]/g, '');
+  var digits = (raw || '').replace(/[^0-9]/g, '').slice(0, 12);
   if (!digits) return '';
   var cents = digits.slice(-2).padStart(2, '0');
   var dollarsRaw = digits.slice(0, -2);
@@ -367,12 +367,16 @@ function setupPrintFieldsIn(scope){
     el.insertAdjacentElement('afterend', printEl);
     syncPrintField(el);
     el.addEventListener('input', function(){ syncPrintField(el); });
-    if (el.classList.contains('money')) attachMoneyField(el);
+    var isMultiline = el.classList.contains('addr-lines') || el.classList.contains('instr');
+    var isMoney = el.classList.contains('money');
+    if (isMoney) attachMoneyField(el);
     if (el.classList.contains('addr-name') || el.classList.contains('addr-lines')) {
       attachPlainTextPaste(el, true);
       attachForceUppercase(el);
+    } else if (!isMoney) {
+      attachPlainTextPaste(el, false);
     }
-    if (el.classList.contains('addr-name')) attachSingleLine(el);
+    if (!isMultiline) attachSingleLine(el);
   });
 }
 function prepareForPrint(){
