@@ -16,6 +16,10 @@
   body{
     background:#5a606b;
     font-family:Arial,Helvetica,sans-serif;
+    /* Never let the engine fake a bold face. If a true Arial Bold is missing,
+       render at regular weight instead — losing emphasis is far better than the
+       thickened/doubled strokes synthetic bold produces on narrow glyphs (I, L, 1). */
+    font-synthesis:none;
     color:var(--ink);
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
@@ -227,7 +231,7 @@ City, State ZIP"></div>
     <div class="sec-head"><span class="tick"></span><h2>PAYMENT INSTRUCTIONS</h2></div>
     <div class="pay-body">
       <div class="fld instr" contenteditable="" data-ph="Bank name, account #, routing #, remit-to address, etc.">Please send payment to: Bank of America
-Company Name: BVB FREIGHT LLC
+Company Name: BVB EXPRESS LLC
 Account Number: 138128546677
 Routing Number: 125000024</div>
       <div class="remit">REMITTANCE: <a href="mailto:accounting@bvbfreight.com">accounting@bvbfreight.com</a></div>
@@ -397,9 +401,16 @@ function fitSheetToPage(){
   sheet.style.zoom = '1';
   var naturalHeightPx = sheet.scrollHeight;
   var availablePx = 11 * 96;
-  if (naturalHeightPx > availablePx) {
-    sheet.style.zoom = String(availablePx / naturalHeightPx);
+  if (naturalHeightPx <= availablePx) return;
+  var z = availablePx / naturalHeightPx;
+  // Below this the text gets too small to read. Warn instead of shrinking further:
+  // .print-frame clips overflow, so silently clamping would drop content off the
+  // page — losing invoice data is worse than an oversized page the user can fix.
+  if (z < 0.65) {
+    z = 0.65;
+    alert('Content is too long to fit one page. Please shorten the Payment Instructions or address fields, or some content may be cut off.');
   }
+  sheet.style.zoom = String(z);
 }
 function resetSheetScale(){
   var sheet = document.querySelector('.sheet');
