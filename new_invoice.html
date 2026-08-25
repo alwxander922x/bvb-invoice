@@ -8,8 +8,8 @@
   body{margin:0;background:#5a606b;font-family:Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   .fld[contenteditable]:empty:before{content:attr(data-ph);color:#b3bac3;font-weight:400;}
   .fld:focus{background:#fffdf4;}
-  .addr-name{font-size:13px;font-weight:700;color:#102242 !important;text-transform:uppercase;}
-  .addr-lines{color:#102242 !important;text-transform:uppercase;}
+  .addr-name{font-size:13px;font-weight:700;color:#102242 !important;}
+  .addr-lines{color:#102242 !important;}
   .addr-sep{font-size:11px;font-weight:700;letter-spacing:.3em;color:#9aa3ae;padding:2px 8px;user-select:none;}
   .print-fld{display:none;}
   a{color:#102242;} a:hover{color:#cf9032;}
@@ -42,23 +42,23 @@
 
   <div style="display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
     <img src="assets/bvb-logo.png" alt="BVB — Best Value Brokerage" style="height:76px;display:block;width:auto;background:transparent;">
-    <h1 style="font-weight:700;font-size:18px;line-height:1.05;color:#102242;margin:0;letter-spacing:.02em;text-transform:uppercase;">Invoice</h1>
+    <h1 style="font-weight:700;font-size:18px;line-height:1.05;color:#102242;margin:0;letter-spacing:.02em;">INVOICE</h1>
   </div>
   <div style="height:2px;background:#102242;margin:8px 0 0;border-radius:2px;"></div>
 
   <!-- meta grid -->
   <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:7px;margin-top:10px;">
     <div style="grid-column:span 6;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#f6f8fa;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Invoice Number</span>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#102242;display:block;margin-bottom:2px;">INVOICE NUMBER</span>
       <div class="fld" contenteditable="" data-ph="—" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
     <div style="grid-column:span 6;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Invoice Date</span>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#102242;display:block;margin-bottom:2px;">INVOICE DATE</span>
       <div class="fld" contenteditable="" data-ph="MM / DD / YYYY" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
 
     <div style="grid-column:span 12;border:1px solid #c4cbd4;border-radius:5px;padding:5px 8px 6px;background:#fff;">
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:2px;">Load / Reference Number</span>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#102242;display:block;margin-bottom:2px;">LOAD / REFERENCE NUMBER</span>
       <div class="fld" contenteditable="" data-ph="—" style="font-size:11px;font-weight:500;color:#102242;min-height:16px;outline:none;"></div>
     </div>
   </div>
@@ -67,23 +67,23 @@
   <div style="margin-top:24px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
-      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Billing Parties</h2>
+      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;margin:0;white-space:nowrap;">BILLING PARTIES</h2>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;">
       <div style="padding:7px 11px;border-right:1px solid #e4e8ed;">
-        <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:3px;">From</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#102242;display:block;margin-bottom:3px;">FROM</span>
         <div style="background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;">
-          <div class="fld addr-name" contenteditable="" data-ph="Company name" style="min-height:16px;outline:none;">BVB FREIGHT </div>
+          <div class="fld addr-name" contenteditable="" data-ph="Company name" style="min-height:16px;outline:none;">BVB FREIGHT</div>
           <div class="addr-sep">---</div>
           <div class="fld addr-lines" contenteditable="" data-ph="Street
 City, State ZIP
-MC #" style="min-height:36px;font-size:11px;font-weight:500;white-space:pre-wrap;outline:none;">160 NW Gilman Blvd, Ste 243
-Issaquah, WA 98027
+MC #" style="min-height:36px;font-size:11px;font-weight:500;white-space:pre-wrap;outline:none;">160 NW GILMAN BLVD, STE 243
+ISSAQUAH, WA 98027
 MC 1164350</div>
         </div>
       </div>
       <div style="padding:7px 11px;">
-        <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#102242;display:block;margin-bottom:3px;">Bill To</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#102242;display:block;margin-bottom:3px;">BILL TO</span>
         <div style="background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;">
           <div class="fld addr-name" contenteditable="" data-ph="Company name" style="min-height:16px;outline:none;"></div>
           <div class="addr-sep">---</div>
@@ -98,13 +98,13 @@ City, State ZIP" style="min-height:36px;font-size:11px;font-weight:500;white-spa
   <div style="margin-top:24px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
-      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Shipment Details</h2>
+      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;margin:0;white-space:nowrap;">SHIPMENT DETAILS</h2>
     </div>
     <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
       <thead>
         <tr>
-          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:20%;">Event</th>
-          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:80%;">Location</th>
+          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:20%;">EVENT</th>
+          <th style="background:#f6f8fa;color:#102242;font-size:9px;font-weight:700;letter-spacing:.06em;padding:4px 8px;text-align:left;border-bottom:1px solid #c4cbd4;width:80%;">LOCATION</th>
         </tr>
       </thead>
       <tbody>
@@ -123,7 +123,7 @@ City, State ZIP" style="min-height:36px;font-size:11px;font-weight:500;white-spa
   <!-- totals -->
   <div style="margin-top:20px;display:flex;justify-content:flex-end;">
     <table style="width:280px;border-collapse:collapse;border:1px solid #c4cbd4;">
-      <tr><td style="padding:7px 11px;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#102242;">Total Due</td><td style="padding:7px 11px;text-align:right;"><div id="totalDueFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:14px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
+      <tr><td style="padding:7px 11px;font-weight:700;font-size:12px;letter-spacing:.08em;color:#102242;">TOTAL DUE</td><td style="padding:7px 11px;text-align:right;"><div id="totalDueFld" class="fld money" contenteditable="" data-ph="$0.00" inputmode="decimal" style="font-size:14px;font-weight:700;color:#102242;outline:none;"></div></td></tr>
     </table>
   </div>
 
@@ -131,7 +131,7 @@ City, State ZIP" style="min-height:36px;font-size:11px;font-weight:500;white-spa
   <div style="margin-top:20px;border:1px solid #c4cbd4;border-radius:6px;overflow:hidden;">
     <div style="display:flex;align-items:center;gap:9px;background:#102242;color:#fff;padding:5px 11px;">
       <span style="flex:0 0 auto;width:5px;height:15px;background:#cf9032;border-radius:2px;"></span>
-      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin:0;white-space:nowrap;">Payment Instructions</h2>
+      <h2 style="font-weight:600;font-size:11.5px;letter-spacing:.09em;margin:0;white-space:nowrap;">PAYMENT INSTRUCTIONS</h2>
     </div>
     <div style="padding:7px 11px;text-align:center;">
       <div class="fld" contenteditable="" data-ph="Bank name, account #, routing #, remit-to address, etc." style="min-height:40px;background:#f6f8fa;border:1px solid #aeb6c1;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:#102242;white-space:pre-wrap;text-align:center;outline:none;">Please send payment to: Bank of America
@@ -146,7 +146,7 @@ Routing Number: 125000024</div>
     <div style="font-size:9px;color:#6b7480;font-weight:600;line-height:1.4;">To report billing discrepancies or request documentation, please email <a href="mailto:accounting@bvbfreight.com" style="color:#102242;">accounting@bvbfreight.com</a> within 72 hours of receipt.</div>
     <div style="display:flex;align-items:flex-end;justify-content:flex-end;gap:20px;padding-top:8px;">
       <div style="display:flex;align-items:flex-end;gap:8px;">
-       
+
     </div>
   </div>
 </div>
@@ -212,10 +212,11 @@ function insertPlainTextAtCursor(text){
   sel.removeAllRanges();
   sel.addRange(range);
 }
-function attachPlainTextPaste(el){
+function attachPlainTextPaste(el, forceUpper){
   el.addEventListener('paste', function(evt){
     evt.preventDefault();
     var text = (evt.clipboardData || window.clipboardData).getData('text/plain');
+    if (forceUpper) text = text.toUpperCase();
     insertPlainTextAtCursor(text);
     syncPrintField(el);
   });
@@ -223,6 +224,39 @@ function attachPlainTextPaste(el){
 function attachSingleLine(el){
   el.addEventListener('keydown', function(evt){
     if (evt.key === 'Enter') evt.preventDefault();
+  });
+}
+
+/* ---------- force real uppercase characters (not just CSS text-transform) ----------
+   CSS text-transform:uppercase only changes how lowercase glyphs are *painted* —
+   the underlying text in the DOM (and later embedded in the printed PDF) stays
+   lowercase. Some PDF viewers (Adobe Acrobat) substitute/rasterize that painted
+   uppercase glyph inconsistently, which is what made letters like "I" look
+   oversized or malformed when the PDF was opened outside Chrome. Actually
+   converting the stored characters to uppercase avoids that mismatch entirely. */
+function attachForceUppercase(el){
+  el.addEventListener('input', function(){
+    var upper = el.textContent.toUpperCase();
+    if (upper === el.textContent) { syncPrintField(el); return; }
+    var sel = window.getSelection();
+    var caretOffset = 0;
+    if (sel && sel.rangeCount) {
+      var preRange = sel.getRangeAt(0).cloneRange();
+      preRange.selectNodeContents(el);
+      preRange.setEnd(sel.getRangeAt(0).endContainer, sel.getRangeAt(0).endOffset);
+      caretOffset = preRange.toString().length;
+    }
+    el.textContent = upper;
+    var node = el.firstChild;
+    if (node) {
+      var pos = Math.min(caretOffset, node.length);
+      var r = document.createRange();
+      r.setStart(node, pos);
+      r.setEnd(node, pos);
+      sel.removeAllRanges();
+      sel.addRange(r);
+    }
+    syncPrintField(el);
   });
 }
 
@@ -246,7 +280,10 @@ function setupPrintFieldsIn(scope){
     syncPrintField(el);
     el.addEventListener('input', function(){ syncPrintField(el); });
     if (el.classList.contains('money')) attachMoneyField(el);
-    if (el.classList.contains('addr-name') || el.classList.contains('addr-lines')) attachPlainTextPaste(el);
+    if (el.classList.contains('addr-name') || el.classList.contains('addr-lines')) {
+      attachPlainTextPaste(el, true);
+      attachForceUppercase(el);
+    }
     if (el.classList.contains('addr-name')) attachSingleLine(el);
   });
 }
