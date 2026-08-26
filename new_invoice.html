@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BVB Invoice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#102242; --gold:#cf9032; --gold-2:#e0b25e;
@@ -15,7 +18,7 @@
   html,body{margin:0;padding:0;}
   body{
     background:#5a606b;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:'Roboto', Arial, sans-serif;
     /* Never let the engine fake a bold face. If a true Arial Bold is missing,
        render at regular weight instead — losing emphasis is far better than the
        thickened/doubled strokes synthetic bold produces on narrow glyphs (I, L, 1). */
@@ -37,7 +40,7 @@
   .toolbar .tb-title{color:#fff;font-weight:700;font-size:13px;letter-spacing:.04em;}
   .toolbar .spacer{flex:1;}
   .toolbar button{
-    font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;
+    font-family:'Roboto', Arial, sans-serif;font-size:12px;font-weight:600;
     border:1px solid rgba(255,255,255,.25); background:transparent; color:#fff;
     padding:7px 14px; border-radius:6px; cursor:pointer;
   }
@@ -57,7 +60,7 @@
   /* ---------- header ---------- */
   .hdr{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
   .hdr img{height:76px;display:block;width:auto;background:transparent;}
-  .hdr h1{font-weight:700;font-size:18px;line-height:1.05;color:var(--navy);margin:0;letter-spacing:0;}
+  .hdr h1{font-weight:800;font-size:18px;line-height:1.05;color:var(--navy);margin:0;letter-spacing:0;}
   .rule{height:2px;background:var(--navy);margin:8px 0 0;border-radius:2px;}
 
   /* ---------- meta grid ---------- */
@@ -69,7 +72,7 @@
   .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--navy);display:block;margin-bottom:2px;}
 
   /* ---------- generic field ---------- */
-  .fld{font-size:11px;font-weight:400;color:var(--navy);outline:none;min-height:16px;}
+  .fld{font-size:11px;font-weight:500;color:var(--navy);outline:none;min-height:16px;}
   .fld[contenteditable]:empty:before{content:attr(data-ph);color:#b3bac3;font-weight:400;}
   .fld:focus{background:#fffdf4;}
   .print-fld{display:none;}
@@ -87,14 +90,14 @@
   .addr-box{background:var(--field);border:1px solid var(--field-line);border-radius:5px;padding:6px 8px;}
   .addr-name{font-size:13px;font-weight:700;color:var(--navy) !important;min-height:16px;}
   .addr-sep{font-size:11px;font-weight:700;letter-spacing:.3em;color:#9aa3ae;padding:2px 0;user-select:none;}
-  .addr-lines{font-size:11px;font-weight:400;color:var(--navy) !important;min-height:36px;white-space:pre-wrap;}
+  .addr-lines{font-size:11px;font-weight:500;color:var(--navy) !important;min-height:36px;white-space:pre-wrap;}
 
   /* ---------- shipment table ---------- */
   table{width:100%;border-collapse:collapse;table-layout:fixed;}
   .ship th{background:var(--field);color:var(--navy);font-size:9px;font-weight:700;letter-spacing:.06em;padding:4px 8px;text-align:left;border-bottom:1px solid var(--line);}
   .ship td{padding:5px 8px;font-size:11px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--line-soft);}
   .ship tr:last-child td{border-bottom:none;}
-  .ship td .fld{padding:5px 8px;margin:-5px -8px;min-height:18px;background:var(--field);font-size:11px;font-weight:400;}
+  .ship td .fld{padding:5px 8px;margin:-5px -8px;min-height:18px;background:var(--field);font-size:11px;font-weight:500;}
 
   /* ---------- totals ---------- */
   .totals{margin-top:24px;display:flex;justify-content:flex-end;}
@@ -106,16 +109,16 @@
 
   /* ---------- payment instructions ---------- */
   .pay-body{padding:7px 11px;text-align:center;}
-  .instr{min-height:40px;background:var(--field);border:1px solid var(--field-line);border-radius:5px;padding:6px 8px;font-size:11px;font-weight:400;color:var(--navy);white-space:pre-wrap;text-align:center;}
+  .instr{min-height:40px;background:var(--field);border:1px solid var(--field-line);border-radius:5px;padding:6px 8px;font-size:11px;font-weight:500;color:var(--navy);white-space:pre-wrap;text-align:center;}
   .remit{margin-top:6px;font-size:10px;font-weight:700;color:var(--navy);text-align:center;}
-  .remit a{font-weight:400;}
+  .remit a{font-weight:500;}
 
   /* ---------- footer ---------- */
   .foot{margin-top:auto;padding-top:12px;}
-  .foot .note{font-size:9px;color:var(--muted);font-weight:400;line-height:1.4;}
+  .foot .note{font-size:9px;color:var(--muted);font-weight:600;line-height:1.4;}
 
   @media print{
-    *{font-family:Arial,Helvetica,sans-serif !important;}
+    *{font-family:'Roboto', Arial, sans-serif !important;}
     body{background:#fff;}
     .toolbar{display:none !important;}
     .print-frame{width:8.5in;height:11in;overflow:hidden;position:relative;margin:0 !important;}
