@@ -156,15 +156,15 @@
   <div class="meta">
     <div class="cell fill span6">
       <span class="lbl">INVOICE NUMBER</span>
-      <div class="fld" contenteditable="" data-ph="—"></div>
+      <div id="invNumFld" class="fld" contenteditable="" data-ph="—"></div>
     </div>
     <div class="cell span6">
       <span class="lbl">INVOICE DATE</span>
-      <div class="fld" contenteditable="" data-ph="MM / DD / YYYY"></div>
+      <div id="invDateFld" class="fld" contenteditable="" data-ph="MM / DD / YYYY"></div>
     </div>
     <div class="cell span12">
       <span class="lbl">LOAD / REFERENCE NUMBER</span>
-      <div class="fld" contenteditable="" data-ph="—"></div>
+      <div id="loadRefFld" class="fld" contenteditable="" data-ph="—"></div>
     </div>
   </div>
 
@@ -187,9 +187,9 @@ MC 1164350</div>
       <div>
         <span class="lbl">BILL TO</span>
         <div class="addr-box">
-          <div class="fld addr-name" contenteditable="" data-ph="Company name"></div>
+          <div id="billNameFld" class="fld addr-name" contenteditable="" data-ph="Company name"></div>
           <div class="addr-sep">---</div>
-          <div class="fld addr-lines" contenteditable="" data-ph="Street
+          <div id="billAddrFld" class="fld addr-lines" contenteditable="" data-ph="Street
 City, State ZIP"></div>
         </div>
       </div>
@@ -209,11 +209,11 @@ City, State ZIP"></div>
       <tbody>
         <tr>
           <td>Pick up-A</td>
-          <td style="padding:0;"><div class="fld" contenteditable="" data-ph="City, State"></div></td>
+          <td style="padding:0;"><div id="pickupFld" class="fld" contenteditable="" data-ph="City, State"></div></td>
         </tr>
         <tr>
           <td>Drop-A</td>
-          <td style="padding:0;"><div class="fld" contenteditable="" data-ph="City, State"></div></td>
+          <td style="padding:0;"><div id="dropFld" class="fld" contenteditable="" data-ph="City, State"></div></td>
         </tr>
       </tbody>
     </table>
@@ -432,6 +432,39 @@ window.addEventListener('beforeprint', function(){
 window.addEventListener('afterprint', resetSheetScale);
 
 setupPrintFieldsIn(document);
+
+/* ---------- prefill from Google Sheets (Apps Script) ----------
+   Data arrives as a URL fragment (#key=value&...), never a query string —
+   fragments are never sent in the HTTP request, so freight/customer data
+   never touches GitHub Pages' server logs. */
+function applyDataFromHash(){
+  if (!location.hash || location.hash.length < 2) return;
+  var params = new URLSearchParams(location.hash.slice(1));
+  var fieldMap = {
+    invNum: 'invNumFld',
+    invDate: 'invDateFld',
+    loadRef: 'loadRefFld',
+    billName: 'billNameFld',
+    pickup: 'pickupFld',
+    drop: 'dropFld',
+    total: 'totalDueFld'
+  };
+  Object.keys(fieldMap).forEach(function(key){
+    if (!params.has(key)) return;
+    var el = document.getElementById(fieldMap[key]);
+    if (!el) return;
+    var val = params.get(key);
+    if (key === 'total') val = formatMoneyValue(val.replace(/[^0-9]/g, ''));
+    el.textContent = val;
+    syncPrintField(el);
+  });
+  if (params.get('autoprint') === '1') {
+    var go = function(){ setTimeout(printPdf, 250); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+    else go();
+  }
+}
+applyDataFromHash();
 </script>
 </body>
 </html>
