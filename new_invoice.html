@@ -441,6 +441,7 @@ function applyDataFromHash(){
   if (!location.hash || location.hash.length < 2) return;
   var params = new URLSearchParams(location.hash.slice(1));
   var fieldMap = {
+    invNum: 'invNumFld',
     invDate: 'invDateFld',
     loadRef: 'loadRefFld',
     billName: 'billNameFld',
