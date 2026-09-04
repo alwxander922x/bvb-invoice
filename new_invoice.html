@@ -441,7 +441,6 @@ function applyDataFromHash(){
   if (!location.hash || location.hash.length < 2) return;
   var params = new URLSearchParams(location.hash.slice(1));
   var fieldMap = {
-    invNum: 'invNumFld',
     invDate: 'invDateFld',
     loadRef: 'loadRefFld',
     billName: 'billNameFld',
@@ -449,6 +448,7 @@ function applyDataFromHash(){
     drop: 'dropFld',
     total: 'totalDueFld'
   };
+  var filledAny = false;
   Object.keys(fieldMap).forEach(function(key){
     if (!params.has(key)) return;
     var el = document.getElementById(fieldMap[key]);
@@ -457,11 +457,14 @@ function applyDataFromHash(){
     if (key === 'total') val = formatMoneyValue(val.replace(/[^0-9]/g, ''));
     el.textContent = val;
     syncPrintField(el);
+    filledAny = true;
   });
-  if (params.get('autoprint') === '1') {
-    var go = function(){ setTimeout(printPdf, 250); };
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
-    else go();
+  // Bill To address is never in the sheet data, so it's always the one field
+  // still needing manual input — send focus straight there instead of
+  // popping the print dialog over an incomplete invoice.
+  if (filledAny) {
+    var billAddr = document.getElementById('billAddrFld');
+    if (billAddr) setTimeout(function(){ billAddr.focus(); }, 50);
   }
 }
 applyDataFromHash();
